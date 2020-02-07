@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PhotoInit">
+    tools:context=".PhotoInit"
+    android:background="@color/md_white_1000">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarPhotoInit"
@@ -58,11 +59,12 @@
                 android:padding="5dp">
 
                 <Button
+                    android:textColor="@color/md_white_1000"
                     android:id="@+id/btnInit"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/border_color"
+                    android:background="@drawable/btn_bg"
                     android:text="Cargar" />
             </LinearLayout>
 

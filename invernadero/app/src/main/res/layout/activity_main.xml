@@ -64,9 +64,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <Button
+            android:textColor="@color/md_white_1000"
             android:id="@+id/btnGoToPhotoCapture"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:background="@drawable/border_color"
+            android:background="@drawable/btn_bg"
             android:text="Comparar"
             android:layout_width="match_parent"
             android:layout_height="50dp"/>
@@ -82,9 +83,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <Button
+            android:textColor="@color/md_white_1000"
             android:id="@+id/btnGoToFrmAdd"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:background="@drawable/border_color"
+            android:background="@drawable/btn_bg"
             android:text="Registro de Plantas"
             android:layout_width="match_parent"
             android:layout_height="50dp"/>
@@ -99,9 +101,10 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <Button
+            android:textColor="@color/md_white_1000"
             android:id="@+id/btnGoToListGreenHouse"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:background="@drawable/border_color"
+            android:background="@drawable/btn_bg"
             android:text="Lista de Invernaderos"
             android:layout_width="match_parent"
             android:layout_height="50dp"/>

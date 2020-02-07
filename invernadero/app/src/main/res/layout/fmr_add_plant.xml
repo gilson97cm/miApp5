@@ -36,98 +36,159 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/lblId"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        app:boxCornerRadiusBottomEnd="10dp"
-                        app:errorEnabled="true">
+                        android:orientation="horizontal">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtId"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/md_grey_300"
-                            android:hint="ID"
-                            android:inputType="number" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/lblName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        app:errorEnabled="true">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="10"
+                            android:orientation="vertical">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtName"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/md_grey_300"
-                            android:hint="Nombre"
-                            android:inputType="textCapWords" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            <EditText
+                                android:id="@+id/txtTypeMarket"
+                                style="@style/Widget.AppCompat.EditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@drawable/border_color"
+                                    android:hint="Tipo de Mercado"
+                                android:inputType="textCapWords"
+                                android:paddingLeft="15dp" />
+                        </LinearLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/lblNameC"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        app:errorEnabled="true">
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1" />
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtNameC"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/md_grey_300"
-                            android:hint="Nombre Cientifico"
-                            android:inputType="textCapWords" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/lblDate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        app:errorEnabled="true">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtDate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/md_grey_300"
-                            android:hint="Fecha de Siembra"
-                            android:inputType="date" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/lblHeight"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        app:errorEnabled="true">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/txtHeight"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:backgroundTint="@color/md_grey_300"
-                            android:hint="Altura máxima"
-                            android:inputType="textCapWords" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
 
                     <LinearLayout
-                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="10"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/txtName"
+                                style="@style/Widget.AppCompat.EditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@drawable/border_color"
+                                android:hint="Nombre"
+                                android:inputType="textCapWords"
+                                android:paddingLeft="15dp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="10"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/txtNameC"
+                                style="@style/Widget.AppCompat.EditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@drawable/border_color"
+                                android:hint="Nombre Cietifico"
+                                android:inputType="textCapWords"
+                                android:paddingLeft="15dp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="10"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/txtSize"
+                                style="@style/Widget.AppCompat.EditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="40dp"
+                                android:background="@drawable/border_color"
+                                android:hint="Tamaño Boton"
+                                android:inputType="number"
+                                android:paddingLeft="15dp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_weight="1" />
+
+                    </LinearLayout>
+
+
+
+                   <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:orientation="horizontal">
 
                         <LinearLayout
-                            android:gravity="center"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:orientation="vertical"
                             android:padding="5dp">
 
@@ -152,11 +213,12 @@
                             android:padding="5dp">
 
                             <Button
+                                android:textColor="@color/md_white_1000"
                                 android:id="@+id/btnTakePhoto"
                                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:background="@drawable/border_color"
+                                android:background="@drawable/btn_bg"
                                 android:text="Foto" />
                         </LinearLayout>
 

@@ -37,7 +37,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.android.material.textfield.TextInputEditText;
+
+import android.widget.EditText;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -51,11 +52,11 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class Plant extends AppCompatActivity implements View.OnClickListener {
     Toolbar toolbar;
 
-    TextInputEditText txtId;
-    TextInputEditText txtName;
-    TextInputEditText txtNameC;
-    TextInputEditText txtDate;
-    TextInputEditText txtHeight;
+    EditText txtTypeMsrket;
+    EditText txtName;
+    EditText txtNameC;
+    EditText txtSize;
+    // EditText txtHeight;
     ImageView photoPlant;
     Button btnTakePhoto;
 
@@ -311,60 +312,63 @@ public class Plant extends AppCompatActivity implements View.OnClickListener {
 
     private void cargarWebService() {
 
-        progreso=new ProgressDialog(Plant.this);
+        progreso = new ProgressDialog(Plant.this);
         progreso.setMessage("Cargando...");
         progreso.show();
 
-      //  String ip=getString(R.string.ip);
+        //  String ip=getString(R.string.ip);
         Util util = new Util();
-        String URL = util.getHost()+"wsJSONRegistroMovil.php";
+        String URL = util.getHost() + "wsJSONRegistroMovil.php";
 
-      //  String url=ip+"/ejemploBDRemota/wsJSONRegistroMovil.php?";
+        //  String url=ip+"/ejemploBDRemota/wsJSONRegistroMovil.php?";
 
-        stringRequest=new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+        stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 progreso.hide();
 
-                if (response.trim().equalsIgnoreCase("registra")){
-                    txtId.setText("");
+                if (response.trim().equalsIgnoreCase("registra")) {
+                    txtTypeMsrket.setText("");
                     txtName.setText("");
                     txtNameC.setText("");
-                    txtDate.setText("");
-                    txtHeight.setText("");
+                    txtSize.setText("");
+                    //txtHeight.setText("");
                     photoPlant.setImageResource(R.drawable.not_photo);
-                    Toast.makeText(Plant.this,"Se ha registrado con exito",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(Plant.this,"No se ha registrado ",Toast.LENGTH_SHORT).show();
-                    Log.i("RESPUESTA: ",""+response);
+                    Toast.makeText(Plant.this, "Se ha registrado con exito", Toast.LENGTH_SHORT).show();
+                }else if(response.trim().equalsIgnoreCase("isRepeat")){
+                    Toast.makeText(Plant.this, "Tipo de mercado repetido.", Toast.LENGTH_SHORT).show();
+                    Log.i("RESPUESTA: ", "" + response);
+                } else{
+                    Toast.makeText(Plant.this, "No se ha registrado ", Toast.LENGTH_SHORT).show();
+                    Log.i("RESPUESTA: ", "" + response);
                 }
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Plant.this,"No se ha podido conectar",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Plant.this, "No se ha podido conectar", Toast.LENGTH_SHORT).show();
                 progreso.hide();
             }
-        }){
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                String id=txtId.getText().toString();
-                String nombre=txtName.getText().toString();
-                String nombreC=txtNameC.getText().toString();
-                String fecha=txtDate.getText().toString();
-                String altura=txtHeight.getText().toString();
+                String type = txtTypeMsrket.getText().toString();
+                String nombre = txtName.getText().toString();
+                String nombreC = txtNameC.getText().toString();
+                String size = txtSize.getText().toString();
+                // String altura=txtHeight.getText().toString();
 
-                String imagen=convertirImgString(bitmap);
+                String imagen = convertirImgString(bitmap);
 
-                Map<String,String> parametros=new HashMap<>();
-                parametros.put("idplanta",id);
-                parametros.put("nombreplanta",nombre);
-                parametros.put("nombrecientificoplanta",nombreC);
-                parametros.put("fechasiembraplanta",fecha);
-                parametros.put("aturamaxplanta",altura);
-                parametros.put("fotoplanta",imagen);
+                Map<String, String> parametros = new HashMap<>();
+                parametros.put("tipo_mercado", type);
+                parametros.put("nombrerosa_mercado", nombre);
+                parametros.put("nombrecientifico_mercado", nombreC);
+                parametros.put("tamanoboton_mercado", size);
+                // parametros.put("aturamaxplanta",altura);
+                parametros.put("fotoplanta_mercado", imagen);
 
                 return parametros;
             }
@@ -387,11 +391,11 @@ public class Plant extends AppCompatActivity implements View.OnClickListener {
     private void init() {
 
         toolbar = (Toolbar) findViewById(R.id.toolbarRegister);
-        txtId = (TextInputEditText) findViewById(R.id.txtId);
-        txtName = (TextInputEditText) findViewById(R.id.txtName);
-        txtNameC = (TextInputEditText) findViewById(R.id.txtNameC);
-        txtDate = (TextInputEditText) findViewById(R.id.txtDate);
-        txtHeight = (TextInputEditText) findViewById(R.id.txtHeight);
+        txtTypeMsrket = (EditText) findViewById(R.id.txtTypeMarket);
+        txtName = (EditText) findViewById(R.id.txtName);
+        txtNameC = (EditText) findViewById(R.id.txtNameC);
+        txtSize = (EditText) findViewById(R.id.txtSize);
+        //txtHeight = (EditText) findViewById(R.id.txtHeight);
         photoPlant = (ImageView) findViewById(R.id.photoPlant);
         btnTakePhoto = (Button) findViewById(R.id.btnTakePhoto);
 
