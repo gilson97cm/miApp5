@@ -1,0 +1,2 @@
+CREATE TABLE mercado (id_mercado INT PRIMARY KEY AUTO_INCREMENT, tipo_mrecado VARchar(50),nombrerosa_mercado VARchar(50),nombrecientifico_mercado VARchar(50), tamanoboton_mercado VARchar(50), fotoplanta_mercado VARchar(50) );
+ALTER TABLE estado_cosecha ADD CONSTRAINT tiene FOREIGN KEY (mercado_idmercado) REFERENCES mercado (id_mercado);

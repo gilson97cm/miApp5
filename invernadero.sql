@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-02-2020 a las 09:47:19
+-- Tiempo de generación: 07-02-2020 a las 06:12:46
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bdinvernadero`
+-- Base de datos: `invernadero`
 --
 
 -- --------------------------------------------------------
@@ -34,13 +34,6 @@ CREATE TABLE `crecimiento` (
   `nombrefase` varchar(255) DEFAULT NULL,
   `observacion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `crecimiento`
---
-
-INSERT INTO `crecimiento` (`idcrecimiento`, `planta_idplanta`, `nombrefase`, `observacion`) VALUES
-(25, 200, 'fase uno', 'fase uno');
 
 -- --------------------------------------------------------
 
@@ -58,13 +51,6 @@ CREATE TABLE `cultivo` (
   `nombrecultivo` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `cultivo`
---
-
-INSERT INTO `cultivo` (`idcultivo`, `enfermedades_idenfermedades`, `plaga_idplaga`, `cultivoinvernadero_idcultivoinver`, `estado_idestado`, `invernadero_idinvernadero`, `nombrecultivo`) VALUES
-(788, 56, 1, 11, 400, 100, 'cultivo de rosas');
-
 -- --------------------------------------------------------
 
 --
@@ -78,13 +64,6 @@ CREATE TABLE `cultivoinvernadero` (
   `distanciaentrecultivo` varchar(255) DEFAULT NULL,
   `tecnicaSembrio` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `cultivoinvernadero`
---
-
-INSERT INTO `cultivoinvernadero` (`idcultivoinver`, `nombrecultivo`, `tipocultivo`, `distanciaentrecultivo`, `tecnicaSembrio`) VALUES
-(11, 'cultivo de rosas', 'grande', '5m', 'desconocida');
 
 -- --------------------------------------------------------
 
@@ -136,13 +115,6 @@ CREATE TABLE `enfermedades` (
   `caracteristcagenenferm` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `enfermedades`
---
-
-INSERT INTO `enfermedades` (`idenfermedades`, `estado_idestado`, `crecimiento_idcrecimiento`, `nombreenferm`, `sintomenferm`, `colorhojaenferm`, `observacionenferm`, `caracteristcagenenferm`) VALUES
-(56, 400, 25, 'enfermedad', 'enfermedad', 'negro', 'enfermedad grande', 'enfermedad peligrosa');
-
 -- --------------------------------------------------------
 
 --
@@ -157,13 +129,6 @@ CREATE TABLE `estado` (
   `observacionestado` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `estado`
---
-
-INSERT INTO `estado` (`idestado`, `cultivoinvernadero_idcultivoinver`, `planta_idplanta`, `resultadoestado`, `observacionestado`) VALUES
-(400, 11, 200, 'bueno', 'mas bueno');
-
 -- --------------------------------------------------------
 
 --
@@ -176,7 +141,8 @@ CREATE TABLE `estado_cosecha` (
   `enfermedades_idenfermedades` int(10) UNSIGNED NOT NULL,
   `plaga_idplaga` int(10) UNSIGNED NOT NULL,
   `cultivoinvernadero_idcultivoinver` int(10) UNSIGNED NOT NULL,
-  `ciclo_planta` int(10) UNSIGNED DEFAULT NULL
+  `ciclo_planta` int(10) UNSIGNED DEFAULT NULL,
+  `mercado_idmercado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -291,13 +257,6 @@ CREATE TABLE `invernadero` (
   `materialinvernadero` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `invernadero`
---
-
-INSERT INTO `invernadero` (`idinvernadero`, `ubicacioninvernadero`, `tamanoinvernadero`, `alturainvernadero`, `anchoinvernadero`, `largoinvernadero`, `materialinvernadero`) VALUES
-(100, 'salache', '200', 10, 300, 30.5, 10.5);
-
 -- --------------------------------------------------------
 
 --
@@ -348,6 +307,22 @@ CREATE TABLE `medicionsuelo` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mercado`
+--
+
+CREATE TABLE `mercado` (
+  `id_mercado` int(11) NOT NULL,
+  `tipo_mercado` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nombrerosa_mercado` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nombrecientifico_mercado` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `tamanoboton_mercado` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `fotoplanta_mercado` longblob,
+  `rutafoto_mercado` varchar(255) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `plaga`
 --
 
@@ -356,13 +331,6 @@ CREATE TABLE `plaga` (
   `nombre_plaga` varchar(255) DEFAULT NULL,
   `caracteristica_general_plaga` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `plaga`
---
-
-INSERT INTO `plaga` (`idplaga`, `nombre_plaga`, `caracteristica_general_plaga`) VALUES
-(1, 'gusanos', 'gusanos salvajes');
 
 -- --------------------------------------------------------
 
@@ -375,16 +343,8 @@ CREATE TABLE `planta` (
   `nombreplanta` varchar(255) DEFAULT NULL,
   `nombrecientificoplanta` varchar(255) DEFAULT NULL,
   `fechasiembraplanta` varchar(255) DEFAULT NULL,
-  `aturamaxplanta` varchar(255) DEFAULT NULL,
-  `fotoplanta` longblob NOT NULL
+  `aturamaxplanta` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `planta`
---
-
-INSERT INTO `planta` (`idplanta`, `nombreplanta`, `nombrecientificoplanta`, `fechasiembraplanta`, `aturamaxplanta`, `fotoplanta`) VALUES
-(200, 'rosas', 'rosas', '01/02/2020', '5m', '');
 
 -- --------------------------------------------------------
 
@@ -578,7 +538,8 @@ ALTER TABLE `estado_cosecha`
   ADD KEY `estado_cosecha_FKIndex1` (`cultivoinvernadero_idcultivoinver`),
   ADD KEY `estado_cosecha_FKIndex2` (`planta_idplanta`),
   ADD KEY `estado_cosecha_FKIndex3` (`plaga_idplaga`),
-  ADD KEY `estado_cosecha_FKIndex4` (`enfermedades_idenfermedades`);
+  ADD KEY `estado_cosecha_FKIndex4` (`enfermedades_idenfermedades`),
+  ADD KEY `tiene` (`mercado_idmercado`);
 
 --
 -- Indices de la tabla `estado_humedad`
@@ -632,6 +593,12 @@ ALTER TABLE `medicion`
 --
 ALTER TABLE `medicionsuelo`
   ADD PRIMARY KEY (`idmedicion`);
+
+--
+-- Indices de la tabla `mercado`
+--
+ALTER TABLE `mercado`
+  ADD PRIMARY KEY (`id_mercado`);
 
 --
 -- Indices de la tabla `plaga`
@@ -705,19 +672,19 @@ ALTER TABLE `tratamiento`
 -- AUTO_INCREMENT de la tabla `crecimiento`
 --
 ALTER TABLE `crecimiento`
-  MODIFY `idcrecimiento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `idcrecimiento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `cultivo`
 --
 ALTER TABLE `cultivo`
-  MODIFY `idcultivo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=789;
+  MODIFY `idcultivo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `cultivoinvernadero`
 --
 ALTER TABLE `cultivoinvernadero`
-  MODIFY `idcultivoinver` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idcultivoinver` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `dano_plaen`
@@ -729,13 +696,13 @@ ALTER TABLE `dano_plaen`
 -- AUTO_INCREMENT de la tabla `enfermedades`
 --
 ALTER TABLE `enfermedades`
-  MODIFY `idenfermedades` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `idenfermedades` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `estado`
 --
 ALTER TABLE `estado`
-  MODIFY `idestado` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=401;
+  MODIFY `idestado` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `estado_cosecha`
@@ -771,7 +738,7 @@ ALTER TABLE `fotos`
 -- AUTO_INCREMENT de la tabla `invernadero`
 --
 ALTER TABLE `invernadero`
-  MODIFY `idinvernadero` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `idinvernadero` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `medicion`
@@ -786,16 +753,22 @@ ALTER TABLE `medicionsuelo`
   MODIFY `idmedicion` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `mercado`
+--
+ALTER TABLE `mercado`
+  MODIFY `id_mercado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT de la tabla `plaga`
 --
 ALTER TABLE `plaga`
-  MODIFY `idplaga` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idplaga` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `planta`
 --
 ALTER TABLE `planta`
-  MODIFY `idplanta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2012;
+  MODIFY `idplanta` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `quimico`
@@ -894,7 +867,8 @@ ALTER TABLE `estado_cosecha`
   ADD CONSTRAINT `estado_cosecha_ibfk_1` FOREIGN KEY (`cultivoinvernadero_idcultivoinver`) REFERENCES `cultivoinvernadero` (`idcultivoinver`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `estado_cosecha_ibfk_2` FOREIGN KEY (`planta_idplanta`) REFERENCES `planta` (`idplanta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `estado_cosecha_ibfk_3` FOREIGN KEY (`plaga_idplaga`) REFERENCES `plaga` (`idplaga`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `estado_cosecha_ibfk_4` FOREIGN KEY (`enfermedades_idenfermedades`) REFERENCES `enfermedades` (`idenfermedades`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `estado_cosecha_ibfk_4` FOREIGN KEY (`enfermedades_idenfermedades`) REFERENCES `enfermedades` (`idenfermedades`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `tiene` FOREIGN KEY (`mercado_idmercado`) REFERENCES `mercado` (`id_mercado`);
 
 --
 -- Filtros para la tabla `fotos`

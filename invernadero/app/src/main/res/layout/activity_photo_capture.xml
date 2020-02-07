@@ -74,16 +74,40 @@
                 android:padding="5dp">
 
                 <Button
-                    android:textColor="@color/md_white_1000"
                     android:id="@+id/btnCapture"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/btn_bg"
-                    android:text="Capturar" />
+                    android:text="Capturar"
+                    android:textColor="@color/md_white_1000" />
             </LinearLayout>
 
             <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <Spinner
+                    android:textAlignment="center"
+                    android:id="@+id/spinner"
+                    style="@style/Widget.AppCompat.Spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/dropdownListPreferredItemHeight"
+                    android:dropDownWidth="300dp"
+                    android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+                    android:popupBackground="@android:color/white"
+                    android:popupElevation="3dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -91,13 +115,14 @@
                 android:padding="5dp">
 
                 <Button
-                    android:background="@drawable/btn_bg"
                     android:id="@+id/btnCharge"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textColor="@color/md_white_1000"
-                    android:text="Cargar" />
+                    android:background="@drawable/btn_bg"
+                    android:text="Cargar"
+                    android:textColor="@color/md_white_1000" />
+
             </LinearLayout>
 
 
@@ -108,6 +133,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -115,13 +142,13 @@
                 android:padding="5dp">
 
                 <Button
-                    android:textColor="@color/md_white_1000"
                     android:id="@+id/btnCompare"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/btn_bg"
-                    android:text="Analizar" />
+                    android:text="Analizar"
+                    android:textColor="@color/md_white_1000" />
             </LinearLayout>
 
             <LinearLayout

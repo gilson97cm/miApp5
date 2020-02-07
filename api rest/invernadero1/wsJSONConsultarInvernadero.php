@@ -1,6 +1,6 @@
 <?PHP
 $hostname_localhost ="localhost";
-$database_localhost ="bdinvernadero";
+$database_localhost ="invernadero";
 $username_localhost ="root";
 $password_localhost ="";
 

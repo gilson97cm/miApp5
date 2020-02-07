@@ -58,6 +58,7 @@ import java.util.ArrayList;
                 startActivity(intent);
             }
         });
+
         txtName = (TextView) findViewById(R.id.txtName);
         listGreenHouses = new ArrayList<>();
         recyclerGreenHouses = (RecyclerView) findViewById(R.id.recyclerGreenHouses);
@@ -78,6 +79,7 @@ import java.util.ArrayList;
 
         jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL, null, this, this);
         requestQueue.add(jsonObjectRequest);
+       // VolleySingleton.getIntanciaVolley(this).addToRequestQueue(jsonObjectRequest);
     }
 
     @Override
@@ -122,6 +124,7 @@ import java.util.ArrayList;
                     " " + response, Toast.LENGTH_LONG).show();
             progressDialog.hide();
         }
+
 
     }
 
